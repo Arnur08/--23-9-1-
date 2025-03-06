@@ -11,14 +11,20 @@
             text-align: center;
             font-family: Arial, sans-serif;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
         }
 
         .truck {
-            width: 200px;
+            width: 250px;
             position: absolute;
-            left: -250px;
+            left: -300px;
             bottom: 50px;
-            animation: drive 3s ease-out forwards;
+            animation: drive 4s ease-out forwards;
         }
 
         @keyframes drive {
@@ -32,52 +38,62 @@
             }
         }
 
-        .men {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
+        .men-container {
             position: absolute;
             bottom: -200px;
             left: 50%;
             transform: translateX(-50%);
-            animation: appear 2s ease-out 3s forwards;
+            display: flex;
+            gap: 20px;
+            animation: appearMen 2s ease-out 4s forwards;
+        }
+
+        @keyframes appearMen {
+            to {
+                bottom: 80px;
+            }
         }
 
         .man {
-            width: 50px;
-            height: 100px;
-            background-color: navy;
+            width: 60px;
+            height: 150px;
+            background-color: #6b4226;
             border-radius: 10px;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .head {
+            width: 40px;
+            height: 40px;
+            background-color: #f4c09c;
+            border-radius: 50%;
+            position: absolute;
+            top: -40px;
         }
 
         .flower {
             width: 20px;
-            height: 20px;
-            background-color: red;
-            border-radius: 50%;
+            height: 50px;
+            background: linear-gradient(to top, green 50%, red 50%);
+            border-radius: 10px;
             position: absolute;
-            top: -20px;
+            top: 30px;
             left: 50%;
             transform: translateX(-50%);
         }
 
-        @keyframes appear {
-            to {
-                bottom: 50px;
-            }
-        }
-
         .message {
             opacity: 0;
-            font-size: 24px;
+            font-size: 20px;
             color: white;
             background: rgba(0, 0, 0, 0.5);
-            display: inline-block;
-            padding: 15px;
+            padding: 20px;
             border-radius: 10px;
-            margin-top: 300px;
-            animation: fadeIn 2s ease-in 5s forwards;
+            margin-top: 250px;
+            animation: fadeIn 2s ease-in 6s forwards;
         }
 
         @keyframes fadeIn {
@@ -90,14 +106,14 @@
 <body>
 
     <img src="https://i.imgur.com/F5oNnvO.png" alt="Truck" class="truck">
-    
-    <div class="men">
-        <div class="man"><div class="flower"></div></div>
-        <div class="man"><div class="flower"></div></div>
-        <div class="man"><div class="flower"></div></div>
-        <div class="man"><div class="flower"></div></div>
-        <div class="man"><div class="flower"></div></div>
-        <div class="man"><div class="flower"></div></div>
+
+    <div class="men-container">
+        <div class="man"><div class="head"></div><div class="flower"></div></div>
+        <div class="man"><div class="head"></div><div class="flower"></div></div>
+        <div class="man"><div class="head"></div><div class="flower"></div></div>
+        <div class="man"><div class="head"></div><div class="flower"></div></div>
+        <div class="man"><div class="head"></div><div class="flower"></div></div>
+        <div class="man"><div class="head"></div><div class="flower"></div></div>
     </div>
 
     <div class="message">
