@@ -6,7 +6,7 @@
     <title>8 Наурыз Құтты Болсын!</title>
     <style>
         body {
-            background-color: #121212;
+            background-color: #1a1a1a;
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
@@ -14,11 +14,11 @@
             position: relative;
         }
         .envelope {
-            width: 220px;
-            height: 160px;
+            width: 250px;
+            height: 180px;
             background: #ff4d4d;
             position: absolute;
-            top: 60%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             border-radius: 10px;
@@ -50,26 +50,26 @@
             animation: fall linear infinite;
         }
         @keyframes fall {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(100vh); opacity: 0; }
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(100vh) scale(0.5); opacity: 0; }
         }
         .message {
             display: none;
             position: absolute;
-            top: 30%;
+            top: 25%;
             left: 50%;
             transform: translate(-50%, -30%);
-            font-size: 22px;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 25px;
+            font-size: 24px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
             border-radius: 10px;
+            max-width: 500px;
         }
         .confetti div {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background: yellow;
-            opacity: 0.7;
+            width: 12px;
+            height: 12px;
+            opacity: 0.8;
             animation: confetti-fall linear infinite;
         }
         @keyframes confetti-fall {
@@ -86,10 +86,13 @@
     <div class="envelope" onclick="openMessage()">📩 Аш!</div>
 
     <div class="message">
-        <h2>8 НАУРЫЗ ҚҰТТЫ БОЛСЫН!</h2>
+        <h2>✨ 8 НАУРЫЗ ҚҰТТЫ БОЛСЫН! ✨</h2>
         <p>Құрметті арулар: Айдана, Жанерке, Мадина, Фариза, Әсел, Фатима!</p>
-        <p>Сіздерді көктемнің шуақты мерекесімен шын жүректен құттықтаймын! Әр күніңіз бақыт пен махаббатқа толы болсын! 😊</p>
-        <p>Бұл қасиетті Рамазан айында жүректеріңіз тыныштыққа бөленіп, ең жақсы нұсқаңыз болуды тілеймін!</p>
+        <p>Сіздерді көктемнің ең тамаша мерекесімен шын жүректен құттықтаймын!  
+           Бұл күн тек әйелдер үшін ғана емес, бүкіл әлемді жылулық пен мейірімділікке бөлейтін күн!  
+           Әр күніңіз қуаныш пен махаббатқа толы болсын! 💖</p>
+        <p>Бұл қасиетті Рамазан айында сіздерге жүрек тыныштығы, жақсылық және ең мықты нұсқаңыз болуды тілеймін!</p>
+        <p>💐 Сіздер ең әдемі, ең мейірімді жандарсыздар! Қуаныш пен шаттық сізбен бірге болсын! 💐</p>
         <p>💖 Құрметпен, Арнұр 💖</p>
     </div>
 
@@ -99,11 +102,11 @@
             heart.classList.add("heart");
             heart.innerHTML = "❤️";
             heart.style.left = Math.random() * window.innerWidth + "px";
-            heart.style.animationDuration = Math.random() * 2 + 4 + "s";
+            heart.style.animationDuration = Math.random() * 3 + 3 + "s";
             document.querySelector(".hearts").appendChild(heart);
             setTimeout(() => heart.remove(), 6000);
         }
-        setInterval(createHeart, 150);
+        setInterval(createHeart, 200);
 
         function createConfetti() {
             const confetti = document.createElement("div");
@@ -118,8 +121,8 @@
         function openMessage() {
             document.querySelector(".envelope").style.display = "none";
             document.querySelector(".message").style.display = "block";
-            for (let i = 0; i < 50; i++) {
-                setTimeout(createConfetti, i * 100);
+            for (let i = 0; i < 70; i++) {
+                setTimeout(createConfetti, i * 50);
             }
         }
     </script>
