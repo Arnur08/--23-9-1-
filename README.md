@@ -46,9 +46,6 @@
         }
         .hearts {
             position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
             width: 100%;
             height: 100vh;
             pointer-events: none;
@@ -59,7 +56,8 @@
             height: 20px;
             background-color: red;
             transform: rotate(-45deg);
-            animation: floatDown 5s linear infinite;
+            opacity: 0; /* Сначала не видно */
+            animation: appear 1s forwards, floatDown 5s 1s linear infinite;
         }
         .heart:before, .heart:after {
             content: "";
@@ -71,8 +69,12 @@
         }
         .heart:before { top: -10px; left: 0; }
         .heart:after { left: -10px; top: 0; }
+        @keyframes appear {
+            0% { opacity: 0; transform: translateY(-50px) scale(0.5); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
         @keyframes floatDown {
-            0% { transform: translateY(-50px) rotate(-45deg); opacity: 1; }
+            0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
             100% { transform: translateY(100vh) rotate(-45deg); opacity: 0; }
         }
         .text {
@@ -106,7 +108,7 @@
                     heart.classList.add("heart");
                     heart.style.left = `${Math.random() * 100}%`;
                     heart.style.animationDuration = `${4 + Math.random() * 3}s`;
-                    heart.style.animationDelay = `${Math.random() * 5}s`;
+                    heart.style.animationDelay = `${Math.random()}s`; /* Неожиданное появление */
                     document.querySelector(".hearts").appendChild(heart);
                 }
             </script>
@@ -119,7 +121,7 @@
             <p><b>Рамазан айында сіздерге тек жақсылық, рухани өсу және жеңілдік тілеймін! Өзіңіздің ең жақсы нұсқаңыз болыңыз!</b></p>
         </div>
         <div class="signature">
-            <p>Махаббатпен, Арнур</p>
+            <p>Махаббатпен, Арнұр</p>
         </div>
     </div>
 </body>
