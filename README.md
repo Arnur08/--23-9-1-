@@ -6,7 +6,7 @@
     <title>8 Наурыз Құттықтау</title>
     <style>
         body {
-            background-color: #0a0a3d;
+            background-color: #1a1a1a; /* Темно-серый фон */
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
@@ -46,11 +46,11 @@
         }
         .hearts {
             position: absolute;
-            top: 20px;
+            top: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 300px;
+            width: 100%;
+            height: 100vh;
             pointer-events: none;
         }
         .heart {
@@ -59,7 +59,7 @@
             height: 20px;
             background-color: red;
             transform: rotate(-45deg);
-            animation: floatUpDown 5s infinite ease-in-out;
+            animation: floatDown 5s linear infinite;
         }
         .heart:before, .heart:after {
             content: "";
@@ -71,10 +71,9 @@
         }
         .heart:before { top: -10px; left: 0; }
         .heart:after { left: -10px; top: 0; }
-        @keyframes floatUpDown {
-            0% { transform: translateY(0) rotate(-45deg); }
-            50% { transform: translateY(-150px) rotate(-45deg); opacity: 1; }
-            100% { transform: translateY(200px) rotate(-45deg); opacity: 0; }
+        @keyframes floatDown {
+            0% { transform: translateY(-50px) rotate(-45deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(-45deg); opacity: 0; }
         }
         .text {
             margin-top: 20px;
@@ -102,11 +101,12 @@
         </div>
         <div class="hearts">
             <script>
-                for (let i = 0; i < 15; i++) {
+                for (let i = 0; i < 20; i++) {
                     let heart = document.createElement("div");
                     heart.classList.add("heart");
                     heart.style.left = `${Math.random() * 100}%`;
-                    heart.style.animationDelay = `${Math.random() * 2}s`;
+                    heart.style.animationDuration = `${4 + Math.random() * 3}s`;
+                    heart.style.animationDelay = `${Math.random() * 5}s`;
                     document.querySelector(".hearts").appendChild(heart);
                 }
             </script>
@@ -116,6 +116,7 @@
             <p>Сіздерді 8 Наурыз – Халықаралық әйелдер күнімен шын жүректен құттықтаймын! Сіздерге бақыт, махаббат пен шексіз қуаныш тілеймін!</p>
             <p>Әр күніңіз шаттық пен нұрға толы болсын! Барлық армандарыңыз орындалсын, жүректеріңіз махаббат пен жылылыққа бөленсін!</p>
             <p>Сіздер біздің шабыт көзі, отбасының жүрегі, әлемнің сұлулығысыздар! Осы күн сіздерге тек қуаныш пен бақыт әкелсін!</p>
+            <p><b>Рамазан айында сіздерге тек жақсылық, рухани өсу және жеңілдік тілеймін! Өзіңіздің ең жақсы нұсқаңыз болыңыз!</b></p>
         </div>
         <div class="signature">
             <p>Махаббатпен, Арнур</p>
