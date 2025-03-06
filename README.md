@@ -1,127 +1,117 @@
-# M-23-9-1
-<!DOCTYPE html>
-<html lang="kk">
+
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>8 Наурыз Құтты Болсын!</title>
+    <title>Поздравление</title>
     <style>
         body {
-            background-color: #ffb6c1;
-            text-align: center;
+            background-color: #0a0a3d;
+            color: white;
             font-family: Arial, sans-serif;
+            text-align: center;
             overflow: hidden;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+        }
+        .envelope {
             position: relative;
-        }
-
-        .truck {
-            width: 250px;
-            position: absolute;
-            left: -300px;
-            bottom: 50px;
-            animation: drive 4s ease-out forwards;
-        }
-
-        @keyframes drive {
-            50% {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            100% {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
-
-        .men-container {
-            position: absolute;
-            bottom: -200px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 20px;
-            animation: appearMen 2s ease-out 4s forwards;
-        }
-
-        @keyframes appearMen {
-            to {
-                bottom: 80px;
-            }
-        }
-
-        .man {
-            width: 60px;
+            width: 200px;
             height: 150px;
-            background-color: #6b4226;
+            background: #ffcc66;
             border-radius: 10px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
         }
-
-        .head {
-            width: 40px;
-            height: 40px;
-            background-color: #f4c09c;
-            border-radius: 50%;
+        .flap {
             position: absolute;
-            top: -40px;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 75px solid #ffb347;
+            transform-origin: top;
+            animation: openFlap 2s forwards;
         }
-
-        .flower {
-            width: 20px;
-            height: 50px;
-            background: linear-gradient(to top, green 50%, red 50%);
-            border-radius: 10px;
+        @keyframes openFlap {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotateX(180deg); }
+        }
+        .hearts {
             position: absolute;
-            top: 30px;
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
-        }
-
-        .message {
+            width: 100px;
+            height: 100px;
             opacity: 0;
-            font-size: 20px;
-            color: white;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 250px;
-            animation: fadeIn 2s ease-in 6s forwards;
+            animation: heartsFlow 4s 2s forwards;
         }
-
+        @keyframes heartsFlow {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(-50px); }
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transform: rotate(-45deg);
+            top: 0;
+            left: 50%;
+            animation: floatUp 4s infinite ease-in-out;
+        }
+        .heart:before, .heart:after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+        }
+        .heart:before { top: -10px; left: 0; }
+        .heart:after { left: -10px; top: 0; }
+        .text {
+            margin-top: 20px;
+            font-size: 22px;
+            opacity: 0;
+            animation: fadeIn 3s 3s forwards;
+        }
         @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .signature {
+            margin-top: 40px;
+            font-size: 18px;
+            opacity: 0;
+            animation: fadeIn 3s 4s forwards;
         }
     </style>
 </head>
 <body>
-
-    <img src="https://i.imgur.com/F5oNnvO.png" alt="Truck" class="truck">
-
-    <div class="men-container">
-        <div class="man"><div class="head"></div><div class="flower"></div></div>
-        <div class="man"><div class="head"></div><div class="flower"></div></div>
-        <div class="man"><div class="head"></div><div class="flower"></div></div>
-        <div class="man"><div class="head"></div><div class="flower"></div></div>
-        <div class="man"><div class="head"></div><div class="flower"></div></div>
-        <div class="man"><div class="head"></div><div class="flower"></div></div>
+    <div class="container">
+        <div class="envelope">
+            <div class="flap"></div>
+        </div>
+        <div class="hearts">
+            <div class="heart" style="animation-delay: 0s;"></div>
+            <div class="heart" style="left: 60%; animation-delay: 0.5s;"></div>
+            <div class="heart" style="left: 40%; animation-delay: 1s;"></div>
+        </div>
+        <div class="text">
+            <p>Дорогие девушки! С 8 Марта! Пусть счастье, улыбки и любовь наполняют вашу жизнь!</p>
+        </div>
+        <div class="signature">
+            <p>От Арнура</p>
+        </div>
     </div>
-
-    <div class="message">
-        <p>Құрметті Ақсезім, Ақниет, Аружан, Ақмаржан, Аяулым, Аиназым, Береке, Жібек, Жанерке, Жансая, Жаннұр, Памбух, Ұлдана, Іңкәр, Закия!</p>
-        <p>Сіздерді 8 Наурыз - Халықаралық әйелдер күнімен шын жүректен құттықтаймыз!</p>
-        <p>Сіздерге мықты денсаулық, шексіз бақыт және өмірлеріңіз жарқын болуын тілейміз!</p>
-        <p><b>Ал біздің сүйікті кураторымыз Фатима</b> – сіздің еңбегіңізге үлкен рақмет! Біз сізді жоғары бағалаймыз!</p>
-    </div>
-
 </body>
-</html>
+</html> 
