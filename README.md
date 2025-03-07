@@ -6,123 +6,137 @@
     <title>8 Наурыз Құттықтау</title>
     <style>
         body {
-            background-color: #1a1a1a; /* Темно-серый фон */
+            background-color: #1e1e1e;
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
             overflow: hidden;
+            margin: 0;
+            padding: 0;
         }
+
         .container {
             position: relative;
-            width: 100%;
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
         }
+
         .envelope {
+            width: 150px;
+            height: 100px;
+            background-color: #d62828;
             position: relative;
-            width: 200px;
-            height: 150px;
-            background: #ffcc66;
+            cursor: pointer;
             border-radius: 10px;
-            box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
         }
-        .flap {
+
+        .envelope:hover {
+            transform: scale(1.1);
+        }
+
+        .envelope::before {
+            content: "От Арнура";
+            color: white;
+            font-weight: bold;
+            position: absolute;
+            top: -30px;
+        }
+
+        .hint {
+            font-size: 14px;
+            color: #fff;
+            position: absolute;
+            top: -50px;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hearts-container {
             position: absolute;
             top: 0;
-            width: 0;
-            height: 0;
-            border-left: 100px solid transparent;
-            border-right: 100px solid transparent;
-            border-bottom: 75px solid #ffb347;
-            transform-origin: top;
-            animation: openFlap 2s forwards;
-        }
-        @keyframes openFlap {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotateX(180deg); }
-        }
-        .hearts {
-            position: absolute;
+            left: 0;
             width: 100%;
-            height: 100vh;
+            height: 100%;
             pointer-events: none;
         }
+
         .heart {
             position: absolute;
             width: 20px;
             height: 20px;
             background-color: red;
-            transform: rotate(-45deg);
-            opacity: 0; /* Сначала не видно */
-            animation: appear 1s forwards, floatDown 5s 1s linear infinite;
+            clip-path: polygon(50% 0%, 100% 40%, 80% 100%, 50% 80%, 20% 100%, 0% 40%);
+            opacity: 0;
+            animation: fall 4s linear forwards;
         }
-        .heart:before, .heart:after {
-            content: "";
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: red;
-            border-radius: 50%;
+
+        @keyframes fall {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(100vh); }
         }
-        .heart:before { top: -10px; left: 0; }
-        .heart:after { left: -10px; top: 0; }
-        @keyframes appear {
-            0% { opacity: 0; transform: translateY(-50px) scale(0.5); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        @keyframes floatDown {
-            0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(-45deg); opacity: 0; }
-        }
-        .text {
+
+        .message {
+            display: none;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
             margin-top: 20px;
-            font-size: 22px;
-            opacity: 0;
-            animation: fadeIn 3s 3s forwards;
             width: 80%;
-        }
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-        .signature {
-            margin-top: 40px;
+            max-width: 500px;
             font-size: 18px;
-            opacity: 0;
-            animation: fadeIn 3s 4s forwards;
+            line-height: 1.5;
+        }
+
+        .names {
+            color: #ffcc00;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="envelope">
-            <div class="flap"></div>
-        </div>
-        <div class="hearts">
-            <script>
-                for (let i = 0; i < 20; i++) {
-                    let heart = document.createElement("div");
-                    heart.classList.add("heart");
-                    heart.style.left = `${Math.random() * 100}%`;
-                    heart.style.animationDuration = `${4 + Math.random() * 3}s`;
-                    heart.style.animationDelay = `${Math.random()}s`; /* Неожиданное появление */
-                    document.querySelector(".hearts").appendChild(heart);
-                }
-            </script>
-        </div>
-        <div class="text">
-            <p>Құрметті Аксезім, Акниет, Аружан, Ақмаржан, Аяулым, Аиназым, Береке, Жібек, Жанерке, Жансая, Жаннұр, Памбук, Ұлдана, Іңкәр, Закия!</p>
-            <p>Сіздерді 8 Наурыз – Халықаралық әйелдер күнімен шын жүректен құттықтаймын! Сіздерге бақыт, махаббат пен шексіз қуаныш тілеймін!</p>
-            <p>Әр күніңіз шаттық пен нұрға толы болсын! Барлық армандарыңыз орындалсын, жүректеріңіз махаббат пен жылылыққа бөленсін!</p>
-            <p>Сіздер біздің шабыт көзі, отбасының жүрегі, әлемнің сұлулығысыздар! Осы күн сіздерге тек қуаныш пен бақыт әкелсін!</p>
-            <p><b>Рамазан айында сіздерге тек жақсылық, рухани өсу және жеңілдік тілеймін! Өзіңіздің ең жақсы нұсқаңыз болыңыз!</b></p>
-        </div>
-        <div class="signature">
-            <p>Махаббатпен, Арнұр</p>
-        </div>
+
+<div class="container">
+    <div class="hint">Нажми, чтобы открыть</div>
+    <div class="envelope" onclick="openEnvelope()"></div>
+    <div class="hearts-container"></div>
+    <div class="message" id="message">
+        <p><span class="names">Ақмаржан, Ақниет, Ақсезім, Аиназым, Аружан, Аяжан, Береке, Памбух Ұлдана, Гүлназ, Закия, Жанерке, Жаннұр, Жансая, Жібек, Сұлухан, Сабина</span>!</p>
+        <p>Сіздерді 8 Наурыз Халықаралық әйелдер күнімен шын жүректен құттықтаймын! Сіздердің сұлулықтарыңыз бен мейірімділіктеріңіз әлемді жарқын етеді. Денсаулық, бақыт, табыс және жүректеріңізде мәңгілік көктем болсын!</p>
+        <p>Алдағы Рамазан айында сабыр, ізгілік және рухани жетілу тілеймін. Жүректеріңіз тыныштық пен жылулыққа толсын!</p>
+        <p>✨ Ізгі тілекпен, Арнұр ✨</p>
     </div>
+</div>
+
+<script>
+    function openEnvelope() {
+        document.querySelector(".envelope").style.display = "none";
+        document.querySelector(".hint").style.display = "none";
+
+        const heartsContainer = document.querySelector(".hearts-container");
+        for (let i = 0; i < 50; i++) {
+            let heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+            heartsContainer.appendChild(heart);
+        }
+
+        setTimeout(() => {
+            document.getElementById("message").style.display = "block";
+        }, 2000);
+    }
+</script>
+
 </body>
 </html>
