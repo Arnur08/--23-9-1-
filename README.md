@@ -3,129 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>8 Наурыз Құтты Болсын!</title>
+    <title>8 Наурыз Құттықтау</title>
     <style>
         body {
-            background-color: #1a1a1a;
+            background-color: #1a1a1a; /* Темно-серый фон */
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
             overflow: hidden;
-            position: relative;
         }
-        .envelope {
-            width: 250px;
-            height: 180px;
-            background: #ff4d4d;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 10px;
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-size: 22px;
-            font-weight: bold;
-            cursor: pointer;
-            animation: float 2s infinite alternate;
         }
-        @keyframes float {
-            0% { transform: translate(-50%, -50%) translateY(-10px); }
-            100% { transform: translate(-50%, -50%) translateY(10px); }
+        .envelope {
+            position: relative;
+            width: 200px;
+            height: 150px;
+            background: #ffcc66;
+            border-radius: 10px;
+            box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
         }
-        .hearts, .confetti {
-            position: fixed;
+        .flap {
+            position: absolute;
             top: 0;
-            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 75px solid #ffb347;
+            transform-origin: top;
+            animation: openFlap 2s forwards;
+        }
+        @keyframes openFlap {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotateX(180deg); }
+        }
+        .hearts {
+            position: absolute;
             width: 100%;
-            height: 100%;
+            height: 100vh;
             pointer-events: none;
         }
         .heart {
             position: absolute;
-            bottom: -10px;
-            color: red;
-            font-size: 28px;
-            animation: fall linear infinite;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transform: rotate(-45deg);
+            opacity: 0; /* Сначала не видно */
+            animation: appear 1s forwards, floatDown 5s 1s linear infinite;
         }
-        @keyframes fall {
-            0% { transform: translateY(0) scale(1); opacity: 1; }
-            100% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-        }
-        .message {
-            display: none;
+        .heart:before, .heart:after {
+            content: "";
             position: absolute;
-            top: 25%;
-            left: 50%;
-            transform: translate(-50%, -30%);
-            font-size: 24px;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 30px;
-            border-radius: 10px;
-            max-width: 500px;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
         }
-        .confetti div {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            opacity: 0.8;
-            animation: confetti-fall linear infinite;
+        .heart:before { top: -10px; left: 0; }
+        .heart:after { left: -10px; top: 0; }
+        @keyframes appear {
+            0% { opacity: 0; transform: translateY(-50px) scale(0.5); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
-        @keyframes confetti-fall {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        @keyframes floatDown {
+            0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(-45deg); opacity: 0; }
+        }
+        .text {
+            margin-top: 20px;
+            font-size: 22px;
+            opacity: 0;
+            animation: fadeIn 3s 3s forwards;
+            width: 80%;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .signature {
+            margin-top: 40px;
+            font-size: 18px;
+            opacity: 0;
+            animation: fadeIn 3s 4s forwards;
         }
     </style>
 </head>
 <body>
-
-    <div class="hearts"></div>
-    <div class="confetti"></div>
-
-    <div class="envelope" onclick="openMessage()">📩 Аш!</div>
-
-    <div class="message">
-        <h2>✨ 8 НАУРЫЗ ҚҰТТЫ БОЛСЫН! ✨</h2>
-        <p>Құрметті арулар: Айдана, Жанерке, Мадина, Фариза, Әсел, Фатима!</p>
-        <p>Сіздерді көктемнің ең тамаша мерекесімен шын жүректен құттықтаймын!  
-           Бұл күн тек әйелдер үшін ғана емес, бүкіл әлемді жылулық пен мейірімділікке бөлейтін күн!  
-           Әр күніңіз қуаныш пен махаббатқа толы болсын! 💖</p>
-        <p>Бұл қасиетті Рамазан айында сіздерге жүрек тыныштығы, жақсылық және ең мықты нұсқаңыз болуды тілеймін!</p>
-        <p>💐 Сіздер ең әдемі, ең мейірімді жандарсыздар! Қуаныш пен шаттық сізбен бірге болсын! 💐</p>
-        <p>💖 Құрметпен, Арнұр 💖</p>
+    <div class="container">
+        <div class="envelope">
+            <div class="flap"></div>
+        </div>
+        <div class="hearts">
+            <script>
+                for (let i = 0; i < 20; i++) {
+                    let heart = document.createElement("div");
+                    heart.classList.add("heart");
+                    heart.style.left = `${Math.random() * 100}%`;
+                    heart.style.animationDuration = `${4 + Math.random() * 3}s`;
+                    heart.style.animationDelay = `${Math.random()}s`; /* Неожиданное появление */
+                    document.querySelector(".hearts").appendChild(heart);
+                }
+            </script>
+        </div>
+        <div class="text">
+            <p>Құрметті Аксезім, Акниет, Аружан, Ақмаржан, Аяулым, Аиназым, Береке, Жібек, Жанерке, Жансая, Жаннұр, Памбук, Ұлдана, Іңкәр, Закия!</p>
+            <p>Сіздерді 8 Наурыз – Халықаралық әйелдер күнімен шын жүректен құттықтаймын! Сіздерге бақыт, махаббат пен шексіз қуаныш тілеймін!</p>
+            <p>Әр күніңіз шаттық пен нұрға толы болсын! Барлық армандарыңыз орындалсын, жүректеріңіз махаббат пен жылылыққа бөленсін!</p>
+            <p>Сіздер біздің шабыт көзі, отбасының жүрегі, әлемнің сұлулығысыздар! Осы күн сіздерге тек қуаныш пен бақыт әкелсін!</p>
+            <p><b>Рамазан айында сіздерге тек жақсылық, рухани өсу және жеңілдік тілеймін! Өзіңіздің ең жақсы нұсқаңыз болыңыз!</b></p>
+        </div>
+        <div class="signature">
+            <p>Махаббатпен, Арнұр</p>
+        </div>
     </div>
-
-    <script>
-        function createHeart() {
-            const heart = document.createElement("div");
-            heart.classList.add("heart");
-            heart.innerHTML = "❤️";
-            heart.style.left = Math.random() * window.innerWidth + "px";
-            heart.style.animationDuration = Math.random() * 3 + 3 + "s";
-            document.querySelector(".hearts").appendChild(heart);
-            setTimeout(() => heart.remove(), 6000);
-        }
-        setInterval(createHeart, 200);
-
-        function createConfetti() {
-            const confetti = document.createElement("div");
-            confetti.style.left = Math.random() * window.innerWidth + "px";
-            confetti.style.animationDuration = Math.random() * 3 + 3 + "s";
-            confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-            confetti.classList.add("confetti");
-            document.querySelector(".confetti").appendChild(confetti);
-            setTimeout(() => confetti.remove(), 5000);
-        }
-
-        function openMessage() {
-            document.querySelector(".envelope").style.display = "none";
-            document.querySelector(".message").style.display = "block";
-            for (let i = 0; i < 70; i++) {
-                setTimeout(createConfetti, i * 50);
-            }
-        }
-    </script>
-
 </body>
 </html>
