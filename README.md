@@ -3,101 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>8 Наурыз Құттықтау</title>
+    <title>Құттықтау</title>
     <style>
         body {
-            background-color: #1a1a1a;
+            background-color: black;
             color: white;
             text-align: center;
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
             overflow: hidden;
         }
-        h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-        p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin: 10px 0;
-        }
-        .container {
+
+        #envelope {
             position: relative;
-            z-index: 1;
-        }
-        .hidden {
-            display: none;
-        }
-        .button {
+            width: 100px;
+            height: 80px;
             background-color: red;
-            color: white;
-            border: none;
-            padding: 15px 20px;
-            font-size: 18px;
+            margin: 150px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
             cursor: pointer;
-            border-radius: 5px;
-            margin-top: 20px;
+            border-radius: 10px;
+            transition: transform 0.5s ease-in-out;
         }
-        .hearts {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 0;
-        }
+
         .heart {
             position: absolute;
             color: red;
             font-size: 24px;
-            animation: fall 3s linear infinite;
+            animation: fall 2s linear forwards;
         }
+
         @keyframes fall {
             0% { transform: translateY(0); opacity: 1; }
             100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        #openBtn {
+            display: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        #message {
+            display: none;
+            font-size: 20px;
+            padding: 20px;
         }
     </style>
 </head>
 <body>
 
-<div class="hearts"></div>
-
-<div class="container">
-    <h1>🌸 8 НАУРЫЗ ҚҰТТЫҚТАУ! 🌸</h1>
-    <button class="button" onclick="showMessage()">Ізгі тілекпен M-23-9-1</button>
-    
-    <div id="message" class="hidden">
+    <div id="envelope" onclick="openEnvelope()">📩</div>
+    <button id="openBtn" onclick="showMessage()">Открыть</button>
+    <div id="message">
         <p>Құрметті Ақмаржан, Ақниет, Ақсезім, Аиназым, Аружан, Аяжан, Береке, Памбух Ұлдана, Гүлназ, Закия, Жанерке, Жаннұр, Жансая, Жібек, Сұлухан, Сабина!</p>
-        <p>Сіздерді көктемнің ең ерекше, ең жарқын мерекесі – 8 Наурызбен шын жүректен құттықтаймын! 🌹</p>
+        <p>Сіздерді көктемнің ең ерекше, ең жарқын мерекесімен құттықтаймын! 🌹</p>
         <p>Сіздерге шексіз бақыт, зор денсаулық, қуаныш пен махаббат тілеймін. Әр күніңіз гүлдей жайнап, жүректеріңіз шаттыққа толы болсын! ❤️</p>
-        <p>Сондай-ақ, қасиетті Рамазан айында Алла сіздерге жеңілдік берсін, жүректеріңіз нұрға толсын. Бұл ай өзіңіздің ең жақсы нұсқаңызға айналуыңызға мүмкіндік болсын! ❤️🌙</p>
-        <p>💖 Ізгі тілекпен, M-23-9-1!</p>
+        <p>Сондай-ақ, қасиетті Рамазан айында Алла сіздерге жеңілдік берсін, жүректеріңіз нұрға толсын. Бұл ай өзіңіздің ең жақсы нұсқаңызға айналуыңызға мүмкіндік болсын! ❤️</p>
+        <p>💖🌙 Ізгі тілекпен, M-23-9-1!</p>
     </div>
-</div>
 
-<script>
-    function showMessage() {
-        document.getElementById("message").classList.remove("hidden");
-        document.querySelector(".button").style.display = "none";
-        createHearts();
-    }
+    <script>
+        function openEnvelope() {
+            let envelope = document.getElementById("envelope");
+            envelope.style.display = "none";
 
-    function createHearts() {
-        const heartContainer = document.querySelector(".hearts");
-        for (let i = 0; i < 20; i++) {
-            let heart = document.createElement("div");
-            heart.classList.add("heart");
-            heart.innerHTML = "❤️";
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.animationDuration = (Math.random() * 2 + 2) + "s";
-            heart.style.animationDelay = Math.random() + "s";
-            heartContainer.appendChild(heart);
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.innerHTML = "❤️";
+                heart.style.left = Math.random() * window.innerWidth + "px";
+                heart.style.top = "-20px";
+                heart.style.fontSize = Math.random() * 20 + 20 + "px";
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 2000);
+            }
+
+            setTimeout(() => {
+                document.getElementById("openBtn").style.display = "block";
+            }, 2000);
         }
-    }
-</script>
+
+        function showMessage() {
+            document.getElementById("openBtn").style.display = "none";
+            document.getElementById("message").style.display = "block";
+
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.innerHTML = "❤️";
+                heart.style.left = Math.random() * window.innerWidth + "px";
+                heart.style.top = "-20px";
+                heart.style.fontSize = Math.random() * 20 + 20 + "px";
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 2000);
+            }
+        }
+    </script>
 
 </body>
 </html>
